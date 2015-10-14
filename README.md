@@ -346,7 +346,7 @@ var max = flyd.stream([n1, n2], function(self, changed) {
 });
 ```
 
-###flyd.isStream(stream)
+### flyd.isStream(stream)
 
 Returns `true` if the supplied argument is a Flyd stream and `false` otherwise.
 
@@ -363,7 +363,7 @@ flyd.isStream(s); //=> true
 flyd.isStream(n); //=> false
 ```
 
-###flyd.immediate(stream)
+### flyd.immediate(stream)
 
 By default the body of a dependent stream is only called when all the streams
 upon which it depends has a value. `immediate` can circumvent this behaviour.
@@ -388,7 +388,7 @@ s([]);
 console.log(hasItems()); // logs `false`.
 ```
 
-###flyd.endsOn(endStream, s)
+### flyd.endsOn(endStream, s)
 
 Changes which `endsStream` should trigger the ending of `s`.
 
@@ -407,7 +407,7 @@ var double = flyd.endsOn(flyd.merge(n.end, killer), flyd.stream([n], function() 
 });
 ```
 
-###flyd.map(fn, s)
+### flyd.map(fn, s)
 
 Returns a new stream consisting of every value from `s` passed through `fn`. I.e. `map` creates
 a new stream that listens to `s` and applies `fn` to every new value.
@@ -422,7 +422,7 @@ var numbers = flyd.stream(0);
 var squaredNumbers = flyd.map(function(n) { return n*n; }, numbers);
 ```
 
-###flyd.on(fn, s)
+### flyd.on(fn, s)
 
 Similair to `map` except that the returned stream is empty. Use `on` for doing
 side effects in reaction to stream changes. Use the returned stream only if you
@@ -438,7 +438,7 @@ var numbers = flyd.stream(0);
 flyd.on(function(n) { console.log('numbers changed to', n); }, numbers);
 ```
 
-###flyd.scan(fn, acc, stream)
+### flyd.scan(fn, acc, stream)
 
 Creates a new stream with the results of calling the function on every incoming
 stream with and accumulator and the incoming value.
@@ -455,7 +455,7 @@ numbers(2)(3)(5);
 sum(); // 10
 ```
 
-###flyd.merge(stream1, stream2)
+### flyd.merge(stream1, stream2)
 
 Creates a new stream down which all values from both `stream1` and `stream2`
 will be sent.
@@ -498,7 +498,7 @@ s1(1)(1)(2)(3)(3)(3)(4);
 results; // [2, 4, 6, 8]
 ```
 
-###flyd.curryN(n, fn)
+### flyd.curryN(n, fn)
 
 Returns `fn` curried to `n`. Use this function to curry functions exposed by
 modules for Flyd.
@@ -515,7 +515,7 @@ flyd.curryN(2, add);
 var add
 ```
 
-###stream()
+### stream()
 
 Returns the last value of the stream.
 
@@ -530,7 +530,7 @@ var names = flyd.stream('Turing');
 names(); // 'Turing'
 ```
 
-###stream(val)
+### stream(val)
 
 Pushes a value down the stream.
 
@@ -545,12 +545,12 @@ names('Bohr');
 names(); // 'Bohr'
 ```
 
-###stream.end
+### stream.end
 
 A stream that emits `true` when the stream ends. If `true` is pushed down the
 stream the parent stream ends.
 
-###stream.map(f)
+### stream.map(f)
 
 Returns a new stream identical to the original except every
 value will be passed through `f`.
@@ -569,7 +569,7 @@ var numbers = flyd.stream(0);
 var squaredNumbers = numbers.map(function(n) { return n*n; });
 ```
 
-###stream1.ap(stream2)
+### stream1.ap(stream2)
 
 `stream1` must be a stream of functions.
 
@@ -593,7 +593,7 @@ var addToNumbers1 = flyd.map(add, numbers1);
 var added = addToNumbers1.ap(numbers2);
 ```
 
-###stream.of(value)
+### stream.of(value)
 
 Returns a new stream with `value` as its initial value. It is identical to
 calling `flyd.stream` with one argument.
